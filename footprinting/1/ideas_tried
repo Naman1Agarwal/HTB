@@ -1,0 +1,9 @@
+1. 
+
+ssh ceil@10.129.42.195 -o PreferredAuthentications=qwer1234
+
+ceil:qwer1234
+
+wget -m --no-passive ftp://ceil:qwer1234@10.129.42.195
+
+inlanefreight.htb
