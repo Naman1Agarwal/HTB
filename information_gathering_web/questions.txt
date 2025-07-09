@@ -1,0 +1,28 @@
+83.136.255.218:41897
+http://inlanefreight.htb:41897
+
+What is the IANA ID of the registrar of the inlanefreight.com domain?
+
+	whois inlanefreight.com
+
+What http server software is powering the inlanefreight.htb site on the target system? Respond with the name of the software, not the version, e.g., Apache.
+	
+	sudo nmap -sC -sV -A -p41897 83.136.255.218
+	curl -I http://83.136.255.218:41897 
+
+
+What is the API key in the hidden admin directory that you have discovered on the target system?
+
+	gobuster vhost -u http://inlanefreight.htb:41897 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain -t 200
+
+After crawling the inlanefreight.htb domain on the target system, what is the email address you have found? Respond with the full email, e.g., mail@inlanefreight.htb.
+	
+	sudo gobuster vhost -u http://inlanefreight.htb:41897 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain -t 200
+	
+
+	sudo gobuster vhost -u http://web1337.inlanefreight.htb:41897 -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain -t 200
+	python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:41897
+
+
+What is the API key the inlanefreight.htb developers will be changing too?
+	python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:41897

